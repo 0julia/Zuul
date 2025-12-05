@@ -14,33 +14,53 @@ The items are:
     in the PINK room: FLAMINGO
 
 */
+void game();
 
 int main(){
+  cout << "Welcome to Zuul!" << endl << "There are 15 rooms" << endl << "You need to collect the 5 items scattered around"<< endl << "Once you collect all the items, you need to reach the black room" << endl << endl;
+  game();
+  return 0;
+}
+  //start game!
+void game(){
+  const char *validcmd[] = {"go", "quit", "help", "get", "drop", "stuff"}; 
   bool win = false;
   char room[20] = "red";
-  cout << "Welcome to Zuul!" << endl << "There are 15 rooms" << endl << "You need to collect the 5 items scattered around"<< endl << "Once you collect all the items, you need to reach the black room";
+  
   while(win == false){
     char request[20]; // what the user inputs
-    char command[20]; // the command (eg go, quit, help, etc)
-    char noun[20]; //the object or location the person wants
+    char command[10]; // the command (eg go, quit, help, etc)
+    char noun[10]; //the object or location the person wants
     cout << "You are in " << room << " room." << endl << "What would you like to do? ";
-    cin >> request;
-    //    cout << request[4];
-    for (int i = 0; i < 20; i++) {
+    cin.getline(request, 10);
+    cin.clear();
+    // divides the command and the noun from the request
+    for (int i = 0; i < strlen(request); i++) {
+      command[i]=request[i];
         if (request[i] == ' ') {
-	  for(int j=0; j < i; j++){
-	    strcpy(command, request);
-	    //command[j]=request[j]; // is this a pointer or creating new memory?
-	  }
-	  for(int j=0; j < (20-i); j++){
+	  command[i] = '\0';
+	  cout << "checkpoint 3"<<endl;
+	  for(int j=0; j < (strlen(request)); j++){
 	    noun[j] = request[j+i];
 	  }
-	  
-            break; // Exit the loop once the character is found
-        }
+	  break;
+	}else if(i == (strlen(request))-1){
+	    command[i+1] = '\0';
+	    noun[0] = '\0';
+	  }
     }
-    cout << command << endl << noun;
-    
+    cout << endl << "Checkup ";
+    cout << command << endl << "Noun: " << noun;
+    cout << endl << endl;
+    bool allowcmd = false; //check if the command the user inputed is allowed
+    for (int i = 0; i < 6; i++){
+      if (strcmp(command, validcmd[i])==0){
+	allowcmd = true;
+      }
+    }
+    if (allowcmd == false){
+      cout << "That is not a valid command, type 'help' to get commands" <<endl;
+      game();
+    }
   }
-  return 0;
 }
