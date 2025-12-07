@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include "room.h"
 using namespace std;
 
 /*
@@ -14,17 +15,29 @@ The items are:
     in the PINK room: FLAMINGO
 
 */
-void game(char room[20], char* stuff[5]);
+void game(char room[20], char stuff[5][20]);
 
 int main(){
   cout << "Welcome to Zuul!" << endl << "There are 15 rooms" << endl << "You need to collect the 5 items scattered around"<< endl << "Once you collect all the items, you need to reach the black room" << endl << endl;
   char room[20] = "red";
-  char* stuff[5];
+  char stuff[5][20];
+  for(int i=0; i<5; i++){
+    strcpy(stuff[i], "nothing");
+  }
+  for(int i=0;i<5;i++){
+    cout<<stuff[i]<<endl;
+  }
   game(room, stuff);
   return 0;
 }
-  //start game!
-void game(char room[20], char* stuff[]){
+
+
+//start game!
+void game(char room[20], char stuff[5][20]){
+  for(int i=0;i<5;i++){
+    cout<<stuff[i]<<endl;
+  }
+  
   const char *validcmd[] = {"go", "quit", "help", "get", "drop", "stuff"}; 
   bool win = false;
   
@@ -77,10 +90,8 @@ void game(char room[20], char* stuff[]){
       cout << "oops, u dropped smth";
     }else if(strcmp(command, "stuff")==0){
       cout << "Your stuff:" << endl;
-      int count = 0;
-      while (stuff[count] != "/0"){
-	cout << stuff[count] << endl;
-	count++;
+      for (int i = 0; i < 5; i++) {
+        cout << stuff[i]<< endl;
       }
       cout << endl;
     }else{
