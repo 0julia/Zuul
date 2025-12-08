@@ -18,7 +18,7 @@ The items are:
 void game(room* currentRoom, char stuff[5][20]);
 
 //defining all the rooms, their stuff, and exits
-void createRooms(room*& currentRoom, room*& black) {
+void createRooms(room*& currentRoom) {
     room* red = new room("in the red room");
     room* orange = new room("in the orange room");
     room* yellow = new room("in the yellow room");
@@ -26,7 +26,7 @@ void createRooms(room*& currentRoom, room*& black) {
     room* blue = new room("in the blue room");
     room* purple = new room("in the purple room");
     room* pink = new room("in the pink room");
-    black = new room("in the black room");
+    room* black = new room("in the black room");
     room* leaf= new room("in the leaf room");
     room* teal= new room("in the teal room");
     room* scarlet= new room("in the scarlet room");
@@ -91,14 +91,31 @@ void createRooms(room*& currentRoom, room*& black) {
 
 int main(){
   room* currentRoom;
-  room* blackRoom;
-  createRooms(currentRoom, blackRoom);
+  createRooms(currentRoom);
   cout << "Welcome to Zuul!" << endl << "There are 15 rooms" << endl << "You need to collect the 5 items scattered around"<< endl << "Once you collect all the items, you need to reach the black room" << endl << endl;
   char stuff[5][20];
   for(int i=0; i<5; i++){
     strcpy(stuff[i], " ");
   }
   game(currentRoom, stuff);
+  cout << endl << "bye.";
+
+  //delete all rooms
+  delete red;
+  delete orange;
+  delete yellow;
+  delete green;
+  delete blue;
+  delete purple;
+  delete pink;
+  delete black;
+  delete leaf;
+  delete teal;
+  delete scarlet;
+  delete peach;
+  delete jade;
+  delete magenta;
+  delete lavendar;
   return 0;
 }
 
@@ -204,6 +221,15 @@ void game(room* currentRoom, char stuff[5][20]){
     }else{
       cout << "ERRORR!!!!";
     }
-        
+    bool done = true;
+    for (int i = 0; i<5; i++){
+      if(strcmp(stuff[i], " ")==0){
+	done = false;
+      }
+    }
+    if (strcmp(currentRoom->getDescription(), "in the black room") == 0 && done == true){
+      cout << "goodjob, u won.";
+      win = true;
+    }
   }
 }
