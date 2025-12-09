@@ -14,6 +14,32 @@ The items are:
     in the BLACK room: PENGUIN
     in the PINK room: FLAMINGO
 
+Steps:
+go west
+go north
+get apple
+go south
+go south
+get peach
+go north
+go west
+go west
+go north
+go west
+go west
+go west
+get flamingo
+go east
+go south
+go south
+go east
+get penguin
+go east
+go south
+get leaf
+go north
+go west
+All Done
 */
 void game(room* currentRoom, char stuff[5][20]);
 
