@@ -5,6 +5,7 @@ using namespace std;
 class room{
 public:
   room(const char* desc);
+ ~room(){};
   void setExit(const char* dir, room* neighbor);
   room* getExit(const char* dir);
   
