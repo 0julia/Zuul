@@ -41,83 +41,83 @@ go north
 go west
 All Done
 */
+
 void game(room* currentRoom, char stuff[5][20]);
 
 //defining all the rooms, their stuff, and exits
-void createRooms(room*& currentRoom) {
-    room* red = new room("in the red room");
-    room* orange = new room("in the orange room");
-    room* yellow = new room("in the yellow room");
-    room* green = new room("in the green room");
-    room* blue = new room("in the blue room");
-    room* purple = new room("in the purple room");
-    room* pink = new room("in the pink room");
-    room* black = new room("in the black room");
-    room* leaf= new room("in the leaf room");
-    room* teal= new room("in the teal room");
-    room* scarlet= new room("in the scarlet room");
-    room* peach = new room("in the peach room");
-    room* jade = new room("in the jade room");
-    room* magenta= new room("in the magenta room");
-    room* lavender = new room("in the lavender room");
-
-    red->setExit("west", orange);
-
-    orange->setExit("south", peach);
-    orange->setExit("west", yellow);
-    orange->setExit("east", red);
-    orange->setExit("north", scarlet);
-
-    yellow->setExit("east", orange);
-    yellow->setExit("west", green);
-
-    scarlet->setExit("south", orange);
-
-    peach->setExit("north", orange);
-
-    green->setExit("north", teal);
-    green->setExit("east", yellow);
-    green->setExit("south", leaf);
-
-    teal->setExit("south", green);
-    teal->setExit("west", blue);
-
-    blue->setExit("east", teal);
-    blue->setExit("west", lavender);
-
-    lavender->setExit("west", pink);
-    lavender->setExit("east", blue);
-    lavender->setExit("south", magenta);
-
-    magenta->setExit("south", purple);
-    magenta->setExit("north", lavender);
-
-    purple->setExit("north", magenta);
-    purple->setExit("east", black);
-
-    black->setExit("east", leaf);
-    black->setExit("west", purple);
-
-    leaf->setExit("south", jade);
-    leaf->setExit("west", black);
-    leaf->setExit("north", green);
-
-    jade->setExit("north", leaf);
-    pink->setExit("east", lavender);
-
-    // items
-    scarlet->setItem("apple");
-    peach->setItem("peach");
-    jade->setItem("leaf");
-    black->setItem("penguin");
-    pink->setItem("flamingo");
-
-    currentRoom = red;
-}
 
 int main(){
   room* currentRoom;
-  createRooms(currentRoom);
+  
+  room* red = new room("in the red room");
+  room* orange = new room("in the orange room");
+  room* yellow = new room("in the yellow room");
+  room* green = new room("in the green room");
+  room* blue = new room("in the blue room");
+
+  room* purple = new room("in the purple room");
+  room* pink = new room("in the pink room");
+  room* black = new room("in the black room");
+  room* leaf= new room("in the leaf room");
+  room* teal= new room("in the teal room");
+  room* scarlet= new room("in the scarlet room");
+  room* peach = new room("in the peach room");
+  room* jade = new room("in the jade room");
+  room* magenta= new room("in the magenta room");
+  room* lavender = new room("in the lavender room");
+    
+  red->setExit("west", orange);
+  
+  orange->setExit("south", peach);
+  orange->setExit("west", yellow);
+  orange->setExit("east", red);
+  orange->setExit("north", scarlet);
+    
+  yellow->setExit("east", orange);
+  yellow->setExit("west", green);
+  
+  scarlet->setExit("south", orange);
+  
+  peach->setExit("north", orange);
+  
+  green->setExit("north", teal);
+  green->setExit("east", yellow);
+  green->setExit("south", leaf);
+    
+  teal->setExit("south", green);
+  teal->setExit("west", blue);
+  
+  blue->setExit("east", teal);
+  blue->setExit("west", lavender);
+  
+  lavender->setExit("west", pink);
+  lavender->setExit("east", blue);
+  lavender->setExit("south", magenta);
+  
+  magenta->setExit("south", purple);
+  magenta->setExit("north", lavender);
+  
+  purple->setExit("north", magenta);
+  purple->setExit("east", black);
+  
+  black->setExit("east", leaf);
+  black->setExit("west", purple);
+  
+  leaf->setExit("south", jade);
+  leaf->setExit("west", black);
+  leaf->setExit("north", green);
+  
+  jade->setExit("north", leaf);
+  pink->setExit("east", lavender);
+
+    // items
+  scarlet->setItem("apple");
+  peach->setItem("peach");
+  jade->setItem("leaf");
+  black->setItem("penguin");
+  pink->setItem("flamingo");
+  
+  currentRoom = red;
   cout << "Welcome to Zuul!" << endl << "There are 15 rooms" << endl << "You need to collect the 5 items scattered around"<< endl << "Once you collect all the items, you need to reach the black room" << endl << endl;
   char stuff[5][20];
   for(int i=0; i<5; i++){
@@ -125,8 +125,7 @@ int main(){
   }
   game(currentRoom, stuff);
   cout << endl << "bye.";
-
-  //delete all rooms
+  
   delete red;
   delete orange;
   delete yellow;
@@ -141,7 +140,7 @@ int main(){
   delete peach;
   delete jade;
   delete magenta;
-  delete lavendar;
+  delete lavender;
   return 0;
 }
 
